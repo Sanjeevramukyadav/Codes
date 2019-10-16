@@ -1,6 +1,4 @@
-#include <bits/stdc++.h> 
-#include<time.h>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std; 
 void recInsertion(int arr[], int n) 
 { 
