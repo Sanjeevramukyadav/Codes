@@ -1,0 +1,140 @@
+  /* C++ program to demonstrate the working of friend function.*/
+#include <iostream>
+using namespace std; 
+
+class Distance 
+{
+    private:
+        int meter; 
+    public:
+        Distance(){ meter=0;}
+        friend int func(Distance); //friend function 
+};
+
+int func(Distance d)
+{
+    //function definition
+    d.meter=10; //accessing private data from non-member function
+    return d.meter; 
+}
+
+int main()
+
+{ 
+	Distance D;
+    cout<<"Distace: "<<func(D);
+    system("pause"); 
+    return 0;
+}
+
+
+//Program-2
+#include <iostream>
+
+using namespace std;
+
+class B;       //declaration of class B
+
+class A
+{
+	int value;
+	public:
+		A()
+		{
+			value = 5;
+		}
+		friend int sum(A, B);     // declaring friend function
+};
+
+class B
+{
+	int value;
+	public:
+		B()
+		{
+			value = 3;
+		}
+		friend int sum(A, B);     // declaring friend function
+};
+
+int sum( A v1, B v2 )             // friend function definition
+{
+	return (v1.value + v2.value);
+}
+
+int main()
+{
+	A a;
+	B b;
+	cout << "Sum : " << sum( a, b ) << endl;
+	return 0;
+}
+
+
+Program-3
+
+#include <iostream>
+
+using namespace std;
+
+class Square
+{
+	friend class Rectangle;      // declaring Rectangle as friend class
+	int side;
+	public:
+		Square ( int s )
+		{
+			side = s;
+		}
+};
+
+class Rectangle
+{
+	int length;
+	int breadth;
+	public:
+	int getArea()
+	{
+		return length * breadth;
+	}
+	void shape( Square a )
+	{
+		length = a.side;
+		breadth = a.side;
+	}
+};
+
+int main()
+{
+	Square square(5);
+	Rectangle rectangle;
+	rectangle.shape(square);
+	cout << rectangle.getArea() << endl;
+	return 0;
+}
+
+
+Program-4
+We can also make a indiviual function of one class as a friend of another class. 
+We do this in the same way as we make a function as a friend of a class.
+ The only difference is that we need to write class_name :: in the declaration
+  before the name of that function in the class whose friend it is being declared.
+ The friend function is only specified in the class and its entire body is declared outside the class. 
+
+
+
+class A; // forward declaration of A needed by B
+
+class B
+{
+    display( A a ); //only specified. Body is not declared
+};
+
+class A
+{
+    friend void B::display( A );
+};
+
+void B::display(A a) //declaration here
+{ 
+}
